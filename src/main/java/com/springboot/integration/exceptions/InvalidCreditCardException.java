@@ -13,8 +13,8 @@ public class InvalidCreditCardException extends AbstractThrowableProblem {
     public InvalidCreditCardException(String message) {
         super(
                 TYPE,
-                Status.NOT_ACCEPTABLE.name(),
-                Status.NOT_ACCEPTABLE,
+                Status.UNAUTHORIZED.name(),
+                Status.UNAUTHORIZED,
                 message);
     }
 }
