@@ -1,6 +1,6 @@
-#Spring Integration Java DSL
+Spring Integration Java DSL
 
-#Tech Stack:
+Tech Stack:
 ```
 Java- 8
 Spring Boot- 2.7.2
@@ -8,9 +8,9 @@ Spring Integration
 
 ```
 
-###MongoDB collect stored under schema folder
+MongoDB collect stored under schema folder
 
-##Endpoints
+Endpoints
 ```
 GET: localhost:8080/integration/grocery/2
 POST: localhost:8080/integration/grocery
@@ -18,7 +18,7 @@ PUT: localhost:8080/integration/grocery
 DELETE: localhost:8080/integration/grocery/2
 ```
 
-###POST Payload:
+POST Payload:
 ```
 "grocery": {
     "name" : "Sugar",
