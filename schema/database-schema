@@ -1,0 +1,19 @@
+"grocery": {
+    "name" : "Sugar",
+    "description": "1KG Sugar",
+    "ratings": 4,
+    "price": 1.0,
+    "currency": "USD",
+    "promoAvailable": true,
+    "discountAvailable": true,
+    "image": "sdfdsf",
+    "shopId": "234324234"
+}
+
+shop": {
+    "id" : "234324234"
+    "shopName": "Shopno",
+    "distance": "3km",
+    "time": "23m",
+    "shopType": "Mart"
+}
