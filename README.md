@@ -8,7 +8,7 @@ Spring Integration
 
 ```
 
-MongoDB collect stored under schema folder
+MongoDB Collection stored under '/schema' folder
 
 Grocery Endpoints
 ```
