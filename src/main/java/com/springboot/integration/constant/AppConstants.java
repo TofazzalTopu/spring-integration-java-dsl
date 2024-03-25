@@ -11,18 +11,21 @@ public class AppConstants {
     public static final String CRATE_GROCERY_CHANNEL = "crateGroceryChannel";
     public static final String UPDATE_GROCERY_CHANNEL = "updateGroceryChannel";
     public static final String DELETE_GROCERY_CHANNEL = "deleteGroceryChannel";
+
+    public static final String FIND_BY_SHOP_ID_CHANNEL = "findByShopIdChannel";
+    public static final String CRATE_SHOP_CHANNEL = "crateShopChannel";
+    public static final String UPDATE_SHOP_CHANNEL = "updateShopChannel";
+    public static final String DELETE_SHOP_CHANNEL = "deleteShopChannel";
+
     public static final String TEXT_MESSAGE_CHANNEL = "textMessageChannel";
     public static final String HTTP_OUT_BOUND_REQUEST_CHANNEL = "httpOutBoundRequestChannel";
 
-
-    public static final String GROCERY_FETCHED_SUCCESSFULLY = "Grocery fetched successfully.";
-    public static final String GROCERY_CREATED_SUCCESSFULLY = "Grocery created successfully.";
-    public static final String GROCERY_UPDATED_SUCCESSFULLY = "Grocery updated successfully.";
-    public static final String GROCERY_DELETED_SUCCESSFULLY = "Grocery deleted successfully.";
-    public static final String GROCERY_NOT_FOUND_BY_ID = "Grocery not found by id!";
-    public static final String GROCERY_ID_CAN_NOT_BE_NULL = "Grocery id can not be null!";
-
     public static final String RECORD_FETCHED_SUCCESSFULLY = "Record fetched successfully.";
+    public static final String RECORD_CREATED_SUCCESSFULLY = "Record created successfully.";
+    public static final String RECORD_UPDATED_SUCCESSFULLY = "Record updated successfully.";
+    public static final String RECORD_DELETED_SUCCESSFULLY = "Record deleted successfully.";
+    public static final String RECORD_NOT_FOUND_BY_ID = "Record not found by id!";
+    public static final String RECORD_ID_CAN_NOT_BE_NULL = "Record id can not be null!";
 
     public static final String INVALID_CREDENTIALS = "Invalid Credentials";
 

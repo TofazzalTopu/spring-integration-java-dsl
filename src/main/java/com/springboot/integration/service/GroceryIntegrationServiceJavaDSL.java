@@ -1,7 +1,7 @@
 package com.springboot.integration.service;
 
 import com.springboot.integration.constant.AppConstants;
-import com.springboot.integration.model.Grocery;
+import com.springboot.integration.dto.GroceryDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -65,25 +65,25 @@ public class GroceryIntegrationServiceJavaDSL {
         return IntegrationFlows.from(findByGroceryIdChannel())
                 .transform((String id) -> groceryService.findById(id))
                 .channel(findByGroceryIdChannel())
-                .log(AppConstants.GROCERY_FETCHED_SUCCESSFULLY)
+                .log(AppConstants.RECORD_FETCHED_SUCCESSFULLY)
                 .get();
     }
 
     @Bean
     public IntegrationFlow createGrocery() {
         return IntegrationFlows.from(crateGroceryChannel())
-                .transform((Grocery grocery) -> groceryService.create(grocery))
+                .transform((GroceryDTO grocery) -> groceryService.create(new GroceryDTO()))
                 .channel(crateGroceryChannel())
-                .log(AppConstants.GROCERY_CREATED_SUCCESSFULLY)
+                .log(AppConstants.RECORD_CREATED_SUCCESSFULLY)
                 .get();
     }
 
     @Bean
     public IntegrationFlow updateGrocery() {
         return IntegrationFlows.from(updateGroceryChannel())
-                .transform((Grocery grocery) -> groceryService.update(grocery))
+                .transform((GroceryDTO grocery) -> groceryService.update(new GroceryDTO()))
                 .channel(updateGroceryChannel())
-                .log(AppConstants.GROCERY_UPDATED_SUCCESSFULLY)
+                .log(AppConstants.RECORD_UPDATED_SUCCESSFULLY)
                 .get();
     }
 
@@ -92,7 +92,7 @@ public class GroceryIntegrationServiceJavaDSL {
         return IntegrationFlows.from(deleteGroceryChannel())
                 .transform((String id) -> groceryService.delete(id))
                 .channel(deleteGroceryChannel())
-                .log(AppConstants.GROCERY_DELETED_SUCCESSFULLY)
+                .log(AppConstants.RECORD_DELETED_SUCCESSFULLY)
                 .get();
     }
 

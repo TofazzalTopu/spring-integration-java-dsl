@@ -1,6 +1,7 @@
-package com.springboot.integration.model;
+package com.springboot.integration.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.springboot.integration.model.Shop;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.Max;
@@ -10,9 +11,9 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.UUID;
 
-@Document(collection = "groceries")
+@Document
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Grocery implements Serializable {
+public class GroceryDTO implements Serializable {
 
     private static final long serialVersionUID = -7408851479146003262L;
 
@@ -43,12 +44,12 @@ public class Grocery implements Serializable {
 
     private String image;
 
-    private String shopId;
+    private Shop shop;
 
-    public Grocery() {
+    public GroceryDTO() {
     }
 
-    public Grocery(String id, String name, String description, float ratings, double price, String currency, Boolean isPromoAvailable, Boolean isDiscountAvailable, String image, String shopId) {
+    public GroceryDTO(String id, String name, String description, float ratings, double price, String currency, Boolean isPromoAvailable, Boolean isDiscountAvailable, String image, Shop shop) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -58,7 +59,7 @@ public class Grocery implements Serializable {
         this.isPromoAvailable = isPromoAvailable;
         this.isDiscountAvailable = isDiscountAvailable;
         this.image = image;
-        this.shopId = shopId;
+        this.shop = shop;
     }
 
     public String getId() {
@@ -133,11 +134,11 @@ public class Grocery implements Serializable {
         this.image = image;
     }
 
-    public String getShopId() {
-        return shopId;
+    public Shop getShop() {
+        return shop;
     }
 
-    public void setShopId(String shopId) {
-        this.shopId = shopId;
+    public void setShop(Shop shop) {
+        this.shop = shop;
     }
 }

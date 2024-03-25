@@ -3,8 +3,11 @@ package com.springboot.integration.service.impl;
 import com.springboot.integration.constant.AppConstants;
 import com.springboot.integration.exceptions.NotFoundException;
 import com.springboot.integration.model.Grocery;
+import com.springboot.integration.dto.GroceryDTO;
 import com.springboot.integration.model.Shop;
 import com.springboot.integration.service.GroceryService;
+import com.springboot.integration.service.ShopService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -12,38 +15,67 @@ import java.util.*;
 @Service
 public class GroceryServiceImpl implements GroceryService {
 
+    @Autowired
+    private ShopService shopService;
+
+    public Shop shop = new Shop(UUID.randomUUID().toString(), "Jaya Grocer", "3KM", "12m", "Mart");
+    public Grocery grocery = new Grocery(UUID.randomUUID().toString(), "Milk", "1KG", 4.3f, 1.0, "USD", true, true, "", shop.getId());
+    public List<Grocery> groceryList = new ArrayList<>(Arrays.asList(grocery));
+
     @Override
     public List<Grocery> findAll() {
-        List<Grocery> groceryList = new ArrayList<>();
-        Shop shop = Shop.builder().shopName("Mart").shopType(UUID.randomUUID().toString()).distance("3km").time("12m").build();
-        Grocery grocery = Grocery.builder().id(UUID.randomUUID().toString()).name("Milk").description("1KG").ratings(4.3f).currency("USD")
-                .isPromoAvailable(true).isDiscountAvailable(true).shopId(shop.getId()).build();
-        groceryList.add(grocery);
         return groceryList;
     }
 
     @Override
-    public Grocery findById(String id) {
-        Grocery grocery = new Grocery();
-        if (id == null) throw new NotFoundException(AppConstants.GROCERY_ID_CAN_NOT_BE_NULL);
-        if (Objects.isNull(grocery.getId())) throw new NotFoundException(AppConstants.GROCERY_NOT_FOUND_BY_ID);
-        return grocery;
+    public GroceryDTO findById(String id) {
+        if (id == null) throw new NotFoundException(AppConstants.RECORD_ID_CAN_NOT_BE_NULL);
+        if (Objects.isNull(grocery.getId())) throw new NotFoundException(AppConstants.RECORD_NOT_FOUND_BY_ID);
+        if (Objects.isNull(grocery.getShopId())) throw new NotFoundException(AppConstants.RECORD_NOT_FOUND_BY_ID);
+        return groceryToGroceryDTO(grocery);
     }
 
     @Override
-    public Grocery create(Grocery grocery) {
-        return grocery;
+    public GroceryDTO create(GroceryDTO groceryDTO) {
+        Grocery grocery1 = dToToGrocery(groceryDTO);
+//        grocery1 = groceryRepository.save(grocery1);
+        groceryDTO.setShop(shopService.findById(groceryDTO.getId()));
+        return groceryDTO;
     }
 
     @Override
-    public Grocery update(Grocery grocery) {
-        Grocery existingGrocery = Optional.of(findById(grocery.getId())).orElseThrow(() -> new NotFoundException(AppConstants.GROCERY_NOT_FOUND_BY_ID));
+    public GroceryDTO update(GroceryDTO groceryDTO) {
+        GroceryDTO existingGrocery = Optional.of(findById(grocery.getId())).orElseThrow(() -> new NotFoundException(AppConstants.RECORD_NOT_FOUND_BY_ID));
         existingGrocery.setCurrency(grocery.getCurrency());
-        return existingGrocery;
+        existingGrocery.setShop(shopService.findById(groceryDTO.getId()));
+        return groceryDTO;
     }
 
     @Override
     public boolean delete(String id) {
         return true;
+    }
+
+
+    public GroceryDTO groceryToGroceryDTO(Grocery grocery) {
+        GroceryDTO dto = new GroceryDTO();
+        dto.setId(grocery.getId());
+        dto.setName(grocery.getName());
+        dto.setDescription(grocery.getDescription());
+        dto.setRatings(grocery.getRatings());
+        dto.setPrice(grocery.getPrice());
+        dto.setShop(shopService.findById(grocery.getId()));
+        return dto;
+    }
+
+    public Grocery dToToGrocery(GroceryDTO dto) {
+        Grocery grocery = new Grocery();
+        grocery.setId(dto.getId());
+        grocery.setName(dto.getName());
+        grocery.setDescription(dto.getDescription());
+        grocery.setRatings(dto.getRatings());
+        grocery.setPrice(dto.getPrice());
+        grocery.setShopId(shopService.findById(dto.getId()).getId());
+        return grocery;
     }
 }

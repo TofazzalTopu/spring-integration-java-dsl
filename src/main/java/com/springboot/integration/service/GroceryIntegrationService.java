@@ -30,7 +30,7 @@ public class GroceryIntegrationService {
     @ServiceActivator(inputChannel = AppConstants.INTEGRATION_FIND_BY_ID_GROCERY_GATEWAY_CHANNEL)
     public void findById(Message<String> message) throws MessagingException {
         String id = message.getPayload();
-        if (Objects.isNull(id)) throw new NotFoundException(AppConstants.GROCERY_NOT_FOUND_BY_ID);
+        if (Objects.isNull(id)) throw new NotFoundException(AppConstants.RECORD_NOT_FOUND_BY_ID);
         MessageChannel messageChannel = (MessageChannel) message.getHeaders().getReplyChannel();
         MessageBuilder.fromMessage(message);
         logger.info("Grocery deleted by id {}", id);

@@ -1,24 +1,25 @@
 package com.springboot.integration.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Builder;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.UUID;
 
-@Builder
+@Document(collection = "shops")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Shop implements Serializable {
+
+    private static final long serialVersionUID = -7408851479146003262L;
 
     private String id = UUID.randomUUID().toString();
 
     @NotNull
-    @Size(min = 2, max = 100, message
-            = "Shop Name must be between 2 and 100 characters")
+    @Size(min = 2, max = 100, message = "Shop Name must be between 2 and 100 characters")
     private String shopName = "Jaya Grocer";
-    @NotNull
+    @NotNull @Size(max = 10)
     private String distance;
     @NotNull
     private String time;
