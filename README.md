@@ -8,6 +8,8 @@ Spring Integration
 
 ```
 
+Swagger UI: http://localhost:8080/integration/swagger-ui.html/
+
 MongoDB Collection stored under '/schema' folder
 
 Grocery Endpoints
