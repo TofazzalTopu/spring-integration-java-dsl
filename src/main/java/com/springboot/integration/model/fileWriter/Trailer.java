@@ -5,10 +5,10 @@ import org.beanio.builder.Align;
 
 public class Trailer {
 
-    @Field(length = 1, rid = true, align = Align.LEFT, ordinal = 20,  until = 34)
+    @Field(length = 1, rid = true, align = Align.LEFT, at = 1,  until = 2)
     private String recordType;
 
-    @Field(length = 1, align = Align.RIGHT, ordinal = 14,  until = 23)
+    @Field(length = 1, align = Align.RIGHT, at = 14,  until = 23)
     private String fileType;
 
     public Trailer() {

@@ -5,15 +5,12 @@ import com.springboot.integration.model.fileWriter.FileWriter;
 import com.springboot.integration.model.fileWriter.Header;
 import com.springboot.integration.model.fileWriter.Trailer;
 import com.springboot.integration.service.fileWriter.FlatFileWriterService;
-import org.beanio.BeanIOConfigurationException;
 import org.beanio.BeanWriter;
 import org.beanio.StreamFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -29,7 +26,7 @@ public class FlatFileWriterServiceImpl implements FlatFileWriterService {
             new Detail("2299488320", "RM5.00")));
 
     @Override
-    public void write() throws Exception {
+    public boolean write() throws Exception {
         StreamFactory factory = StreamFactory.newInstance();
 
         File file = ResourceUtils.getFile("classpath:flatfile.xml");
@@ -41,6 +38,7 @@ public class FlatFileWriterServiceImpl implements FlatFileWriterService {
             out.write(fileWriter);
             out.flush();
         }
+        return true;
     }
 
 }
