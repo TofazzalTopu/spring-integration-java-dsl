@@ -1,0 +1,25 @@
+<beanio xmlns="http://www.beanio.org/2012/03" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.beanio.org/2012/03 http://www.beanio.org/2012/03/mapping.xsd">
+
+<stream name="fileWriters" format="csv">
+	
+    <group name="fileWriter" class="com.springboot.integration.model.fileWriter.FileWriter" minOccurs="0" maxOccurs="unbounded">
+
+      <record name="header" class="com.springboot.integration.model.fileWriter.Header" order="1" minOccurs="1" maxOccurs="1">
+        <field name="recordType" length="1" justify="left" type="String" required="true"/>
+        <field name="fileType" length="15" justify="right" type="String" required="true"/>
+      </record>
+      <record name="details" class="com.springboot.integration.model.fileWriter.Detail" collection="list" order="2" minOccurs="1" maxOccurs="unbounded">
+        <field name="referenceNo" length="14" justify="right" type="String" required="true"/>
+        <field name="amount" length="16" justify="right" type="String" required="true"/>
+      </record>
+	  
+	  <record name="trailer" class="com.springboot.integration.model.fileWriter.Trailer" order="3" minOccurs="1" maxOccurs="1">
+        <field name="recordType" length="1" justify="left" type="String" required="true"/>
+        <field name="fileType" length="15" justify="right" type="String" required="true"/>
+      </record>
+	  
+    </group>
+  </stream>
+</beanio>

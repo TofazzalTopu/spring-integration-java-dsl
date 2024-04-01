@@ -69,3 +69,16 @@ shop": {
     "shopType": "Mart"
 }
 ```
+
+Flat File Writer API:
+```
+GET: localhost:8080/integration/write
+
+Flat File Writer xml schema definition file stored under /resource folder.
+Generated FlatFile will be stored under prject root directory.
+```
+
+Jasper Report File:
+```
+flatfile.jrxml
+```
